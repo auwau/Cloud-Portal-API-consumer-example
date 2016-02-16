@@ -4,13 +4,39 @@ using System.Dynamic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace CloudPortal.Web.Api.ConsumerExample
 {
     class Program
     {
+        //Change these constants before you begin - they need to match your settings
+
+        /// <summary>
+        /// Base Address to the API
+        /// </summary>
+        private const string BaseAddress = "https://localhost:44300";
+
+        /// <summary>
+        /// Client Id for your application - create it in the portal: Settings->API Access
+        /// </summary>
+        private const string ClientId = "9ea349a5-deff-4b0e-8b99-30e63d055dc1";
+        
+        /// <summary>
+        /// Origin of your application - this needs to match what you specified in Settings->API Access
+        /// </summary>
+        private const string Origin = "https://testapp.com";
+
+        /// <summary>
+        /// User Name for your user
+        /// </summary>
+        private const string UserName = "api@domain.tld";
+
+        /// <summary>
+        /// Password for your user
+        /// </summary>
+        private const string Password = "123456";
+
+
         static void Main(string[] args)
         {
             ExistingUserAsync().Wait();
@@ -26,18 +52,18 @@ namespace CloudPortal.Web.Api.ConsumerExample
             using (var client = new HttpClient())
             {
                 //Set the Base URI
-                client.BaseAddress = new Uri("https://localhost:44300/");
+                client.BaseAddress = new Uri(BaseAddress);
 
                 //Set Origin - this needs to be the same as you specified in the portal
-                client.DefaultRequestHeaders.Add("ORIGIN", "https://testapp.com");
+                client.DefaultRequestHeaders.Add("ORIGIN", Origin);
 
                 //Setup the token request
                 var tokenRequest = new FormUrlEncodedContent(new[] 
                 {
-                    new KeyValuePair<string, string>("client_id", "9ea349a5-deff-4b0e-8b99-30e63d055dc1"),
+                    new KeyValuePair<string, string>("client_id", ClientId),
                     new KeyValuePair<string, string>("grant_type","password"), 
-                    new KeyValuePair<string, string>("username","api@domain.tld"), 
-                    new KeyValuePair<string, string>("password","123456")
+                    new KeyValuePair<string, string>("username",UserName), 
+                    new KeyValuePair<string, string>("password",Password)
                 });
 
                 //Post token request and receive the access token
@@ -64,7 +90,7 @@ namespace CloudPortal.Web.Api.ConsumerExample
                     var username = user.name;
 
                     //Output result
-                    Console.WriteLine("Response from Consumer test using Username/Password");
+                    Console.WriteLine("Response from Consumer Test using Username/Password");
                     Console.WriteLine("User name: " + username);
                     Console.WriteLine("Current Business Unit Id: " + businessUnitId);
                     Console.WriteLine(); //Empty line
@@ -100,15 +126,15 @@ namespace CloudPortal.Web.Api.ConsumerExample
             using (var client = new HttpClient())
             {
                 //Set the Base URI
-                client.BaseAddress = new Uri("https://localhost:44300/");
+                client.BaseAddress = new Uri(BaseAddress);
 
                 //Set Origin - this needs to be the same as you specified in the portal
-                client.DefaultRequestHeaders.Add("ORIGIN", "https://testapp.com");
+                client.DefaultRequestHeaders.Add("ORIGIN", Origin);
 
                 //Setup the token request
                 var tokenRequest = new FormUrlEncodedContent(new[] 
                 {
-                    new KeyValuePair<string, string>("client_id", "9ea349a5-deff-4b0e-8b99-30e63d055dc1"),
+                    new KeyValuePair<string, string>("client_id", ClientId),
                     new KeyValuePair<string, string>("grant_type","refresh_token"), 
                     new KeyValuePair<string, string>("refresh_token",token.refresh_token)
                 });
