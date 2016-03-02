@@ -86,7 +86,9 @@ namespace CloudPortal.Web.Api.ConsumerExample
                     dynamic user = await response.Content.ReadAsAsync<ExpandoObject>();
 
                     //Read data from serialized object
+                    //Json.NET will always deserialize integers to Int64/long to prevent overflow
                     long businessUnitId = user.businessUnit.id;
+
                     var username = user.name;
 
                     //Output result
