@@ -69,11 +69,16 @@ namespace CloudPortal.Web.Api.ConsumerExample
                 //Post token request and receive the access token
                 var response = await client.PostAsync("v1/oauth", tokenRequest);
 
-                //Serialize the received JSON into an AccessToken object
-                //This example uses the Microsoft.AspNet.WebApi.Client package to do this
+                /*
+                 * Serialize the received JSON into an AccessToken object
+                 * This example uses the Microsoft.AspNet.WebApi.Client package to do this
+                 */
                 var accessToken = await response.Content.ReadAsAsync<AccessToken>();
 
-                //For subsequent calls, add authorization header containing the access token
+                /*
+                 * To authenticate the user in subsequent requests, add the "Authorization" HTTP request header
+                 * containing the access token, i.e.: Authorization: Bearer accessToken
+                 */
                 client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse("Bearer " + accessToken.access_token);
 
                 //Load Active User Profile
@@ -81,12 +86,16 @@ namespace CloudPortal.Web.Api.ConsumerExample
 
                 if (response.IsSuccessStatusCode)
                 {
-                    //Let's serialize the JSON response into a dynamic object
-                    //This example uses the Microsoft.AspNet.WebApi.Client package to do this
+                    /*
+                     * Let's serialize the JSON response into a dynamic object
+                     * This example uses the Microsoft.AspNet.WebApi.Client package to do this
+                     */
                     dynamic user = await response.Content.ReadAsAsync<ExpandoObject>();
 
-                    //Read data from serialized object
-                    //Json.NET will always deserialize integers to Int64/long to prevent overflow
+                    /*
+                     * Read data from serialized object
+                     * Json.NET will always deserialize integers to Int64/long to prevent overflow
+                     */
                     long businessUnitId = user.businessUnit.id;
 
                     var username = user.name;
@@ -99,8 +108,10 @@ namespace CloudPortal.Web.Api.ConsumerExample
                 }
                 else
                 {
-                    //Error handling
-                    //Check if the access token has expired - renew it
+                    /*
+                     * Error handling
+                     * Check if the access token has expired - renew it
+                     */
 
                     var content = await response.Content.ReadAsStringAsync();
 
@@ -144,8 +155,10 @@ namespace CloudPortal.Web.Api.ConsumerExample
                 //Post token request and receive the access token
                 var response = await client.PostAsync("v1/oauth", tokenRequest);
 
-                //Serialize the received JSON into an AccessToken object
-                //This example uses the Microsoft.AspNet.WebApi.Client package to do this
+                /*
+                 * Serialize the received JSON into an AccessToken object
+                 * This example uses the Microsoft.AspNet.WebApi.Client package to do this
+                 */
                 var accessToken = await response.Content.ReadAsAsync<AccessToken>();
 
                 return accessToken;
