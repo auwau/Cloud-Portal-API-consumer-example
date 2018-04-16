@@ -12,7 +12,7 @@ namespace CloudPortal.Web.Api.ConsumerExample
         //Change these constants before you begin - they need to match your settings
 
         /// <summary>
-        /// Base Address to the API
+        /// Base address (URI) for the API
         /// </summary>
         private const string BaseAddress = "https://localhost:44300";
 
@@ -22,7 +22,7 @@ namespace CloudPortal.Web.Api.ConsumerExample
         private const string ClientId = "9ea349a5-deff-4b0e-8b99-30e63d055dc1";
         
         /// <summary>
-        /// Origin of your application - this needs to match what you specified in Settings->API Access
+        /// Origin of your application - this value needs to match what you specified in Cloutility: Business unit -> settings -> API access -> application > origin.
         /// </summary>
         private const string Origin = "https://testapp.com";
 
@@ -44,17 +44,17 @@ namespace CloudPortal.Web.Api.ConsumerExample
         }
 
         /// <summary>
-        /// Call the API using an existing user from the user database
+        /// Call the API using an existing user from Cloutility's user database
         /// </summary>
         /// <returns></returns>
         private static async Task ExistingUserAsync()
         {
             using (var client = new HttpClient())
             {
-                //Set the Base URI
+                //Set the base address
                 client.BaseAddress = new Uri(BaseAddress);
 
-                //Set Origin - this needs to be the same as you specified in the portal
+                //Set Origin - this value needs to match what you specified in Cloutility
                 client.DefaultRequestHeaders.Add("ORIGIN", Origin);
 
                 //Setup the token request
@@ -77,11 +77,11 @@ namespace CloudPortal.Web.Api.ConsumerExample
 
                 /*
                  * To authenticate the user in subsequent requests, add the "Authorization" HTTP request header
-                 * containing the access token, i.e.: Authorization: Bearer accessToken
+                 * containing the access token, i.e.: Authorization: Bearer {accessToken}
                  */
                 client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse("Bearer " + accessToken.access_token);
 
-                //Load Active User Profile
+                //Load active user profile
                 response = await client.GetAsync("v1/me");
 
                 if (response.IsSuccessStatusCode)
@@ -94,16 +94,16 @@ namespace CloudPortal.Web.Api.ConsumerExample
 
                     /*
                      * Read data from serialized object
-                     * Json.NET will always deserialize integers to Int64/long to prevent overflow
+                     * NB: Json.NET will always deserialize integers to Int64/long to prevent overflow
                      */
                     long businessUnitId = user.businessUnit.id;
 
                     var username = user.name;
 
                     //Output result
-                    Console.WriteLine("Response from Consumer Test using Username/Password");
-                    Console.WriteLine("User name: " + username);
-                    Console.WriteLine("Current Business Unit Id: " + businessUnitId);
+                    Console.WriteLine("Response from API consumer test using username/password");
+                    Console.WriteLine("Username: " + username);
+                    Console.WriteLine("Current user's business unit Id: " + businessUnitId);
                     Console.WriteLine(); //Empty line
                 }
                 else
@@ -138,10 +138,10 @@ namespace CloudPortal.Web.Api.ConsumerExample
         {
             using (var client = new HttpClient())
             {
-                //Set the Base URI
+                //Set the base address
                 client.BaseAddress = new Uri(BaseAddress);
 
-                //Set Origin - this needs to be the same as you specified in the portal
+                //Set Origin - this value needs to match what you specified in Cloutility
                 client.DefaultRequestHeaders.Add("ORIGIN", Origin);
 
                 //Setup the token request
