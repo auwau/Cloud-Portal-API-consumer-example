@@ -34,7 +34,7 @@ namespace CloudPortal.Web.Api.ConsumerExample
         /// <summary>
         /// Password for your user
         /// </summary>
-        private const string Password = "123456";
+        private const string Password = "Qwerty123456";
 
 
         static void Main(string[] args)
