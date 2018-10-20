@@ -9,6 +9,8 @@ The example takes you through:
 
 
 ## Getting started
+
+### Cloutility API access
 Before being able to access the API, the application needs to be autohorized by the Cloutility instance. To do this:
 
 1. Sign into Cloutility and navigate to the business unit which you want your application to access as its root/main/home business unit. When choosing a business unit, remember that the API will be able to access the said business unit as well as all of its descendants.
@@ -22,3 +24,7 @@ Before being able to access the API, the application needs to be autohorized by 
 1. Click "add application".
 
 The application will now receive a `client_id` and be visible in the list of external applications with access to the said business unit. You now have the required `Origin` and `client_id` in order for you to access the API with the application.
+
+
+### Clone and open repository
+Clone this repository and open it with Microsoft **Visual Studio 2013** (or newer).
