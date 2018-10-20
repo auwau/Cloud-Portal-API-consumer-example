@@ -14,9 +14,9 @@ Before being able to access the API, the application needs to be autohorized by 
 1. Go to "API access".
 1. Click "add".
 1. Fill in details:
-    1. Name: A friendly name that helps you identify the application - both under "API access" and as part of audit logs.
-    1. Origin: A URL which is required as part of the HTTP-request's `Origin` header, which doesn't have to be a reachable destination, e.g `https://my.application`. The purpose of the `Origin` is to provide an extra layer of security in the sense that the `client_id` (see below) alone cannot be used to access the API.
-    1. Allow refresh tokens: Decide whether your application will use "refresh tokens" or simply request a new `access token` before each request.
+    - Name: A friendly name that helps you identify the application - both under "API access" and as part of audit logs.
+    - Origin: A URL which is required as part of the HTTP-request's `Origin` header, which doesn't have to be a reachable destination, e.g `https://my.application`. The purpose of the `Origin` is to provide an extra layer of security in the sense that the `client_id` (see below) alone cannot be used to access the API.
+    - Allow refresh tokens: Decide whether your application will use "refresh tokens" or simply request a new `access token` before each request.
 1. Click "add application".
 
 The application will now receive a `client_id` and be visible in the list of external applications with access to the said business unit. You now have the required `Origin` and `client_id` in order for you to access the API with the application.
