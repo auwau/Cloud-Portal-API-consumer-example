@@ -2,9 +2,11 @@
 This repository contains a C#.NET example of consuming the Cloutility REST API.
 
 The example takes you through:
+
 - connecting to the API of a Cloutility instance
 - sending and processing a few requests
-- refreshing access using a `refresh-token`
+- refreshing the `access token` using a `refresh-token`
+
 
 ## Getting started
 Before being able to access the API, the application needs to be autohorized by the Cloutility instance. To do this:
