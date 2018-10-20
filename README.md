@@ -26,5 +26,15 @@ Before being able to access the API, the application needs to be autohorized by 
 The application will now receive a `client_id` and be visible in the list of external applications with access to the said business unit. You now have the required `Origin` and `client_id` in order for you to access the API with the application.
 
 
-### Clone and open repository
-Clone this repository and open it with Microsoft **Visual Studio 2013** (or newer).
+### Clone and modify the repository
+Clone this repository and open it with Microsoft **Visual Studio 2013** (or newer). From here:
+
+1. Open `Program.cs`.
+1. Modify the constants so that they correspond to the Cloutility instance you're accessing:
+    1. `BaseAddress`: The URL for the API.
+    1. `ClientId`: The value of the `client_id` generated above.
+    1. `Origin`: The value of the `Origin` header specified above.
+    1. `UserName`: The username of a user-account in the Cloutility instance with hierarchical access to the application's root/main/home business unit.
+    1. `Password`: The password for the user-account.
+    
+You can now run the application.
