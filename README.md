@@ -2,7 +2,7 @@
 This repository contains a C#.NET example of consuming the Cloutility REST API.
 
 ## Getting started
-Before being able to access the API, you have to complete the following steps to allow the application to consume the API:
+Before being able to access the API, the application needs to be autohorized by the Cloutility instance. To do this:
 
 1. Sign into Cloutility and navigate to the business unit which you want your application to access. When choosing a business unit, remember that the API will be able to access the said business unit as well as all of its descendants.
 - Go to "settings" for the business unit.
